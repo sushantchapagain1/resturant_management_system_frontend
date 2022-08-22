@@ -1,1 +1,1 @@
-resturant_management_system_frontend
+resturant_management_system
