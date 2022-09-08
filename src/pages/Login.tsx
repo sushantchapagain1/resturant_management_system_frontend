@@ -3,13 +3,33 @@ import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import React, { useState } from "react";
 import { login } from "../services/loginService";
+import { useMutation, UseQueryResult, useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+
+export const url = "http://localhost:3000/api/users";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const navigate = useNavigate();
+  const {
+    mutateAsync: afterLogin,
+    isLoading,
+    error,
+    isError,
+    data,
+  } = useMutation(login);
+  const handleLogin = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
-    login(email, password);
+    afterLogin(
+      { email, password },
+      {
+        onSuccess: () => navigate("/products"),
+        onError: (error: any) => console.log(error.response?.data.message),
+      }
+    );
   };
 
   return (

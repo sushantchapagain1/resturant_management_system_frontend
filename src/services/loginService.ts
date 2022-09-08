@@ -1,17 +1,23 @@
-import axois, { AxiosError } from "axios";
-import React from "react";
+import axois, { Axios, AxiosError, AxiosResponse } from "axios";
 
 export const url = "http://localhost:3000/api/users";
 
-export const login = async (email: string, password: string) => {
-  try {
-    const res = await axois.post(`${url}/login`, {
-      email,
-      password,
-    });
-    console.log(res);
-  } catch (err: any) {
-    alert(err.response.data);
-    console.log(err.response.data);
-  }
+type loginData = {
+  email: string;
+  password: string;
+};
+
+export const login = async (data: loginData) => {
+  const res = await axois.post(
+    `${url}/login`,
+
+    data
+
+    // { withCredentials: true }
+  );
+  return res;
+  // } catch (err: any) {
+  //   console.log(err.response.data);
+  //   return err;
+  // }
 };
