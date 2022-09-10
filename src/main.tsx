@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Orders from "./pages/Orders";
 import Products from "./pages/Products";
+import Category from "./pages/Category";
+import User from "./pages/User";
 
 const queryClient = new QueryClient();
 
@@ -19,7 +21,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="category" element={<Category />} />
           <Route path="products" element={<Products />} />
+          <Route path="users" element={<User />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

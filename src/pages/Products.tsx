@@ -24,7 +24,7 @@ const Products = () => {
   return (
     <div>
       <Navbar />
-      <div className="container orders__wrapper">
+      <div className="container table__wrapper">
         <table>
           <thead>
             <tr>
@@ -35,9 +35,11 @@ const Products = () => {
               <th>Action</th>
             </tr>
           </thead>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product}></ProductCard>
-          ))}
+          <tbody>
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product}></ProductCard>
+            ))}
+          </tbody>
         </table>
       </div>
 

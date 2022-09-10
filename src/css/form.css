@@ -1,6 +1,7 @@
 .form__container {
   gap: 2rem;
   width: 40%;
+  margin-bottom: 5rem;
 }
 .input__wrapper {
   display: flex;

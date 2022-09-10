@@ -12,3 +12,23 @@ html {
   max-width: 90%;
   margin: 0 auto;
 }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  margin-bottom: 5rem;
+  border-bottom: 1.5px solid #eee;
+}
+
+.nav_lists {
+  display: flex;
+  gap: 2.4rem;
+}
+
+a {
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: black;
+}

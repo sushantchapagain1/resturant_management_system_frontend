@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import "../css/tables.css";
-const Orders = () => {
+const Category = () => {
   return (
     <div>
       <Navbar />
@@ -9,34 +9,39 @@ const Orders = () => {
         <table>
           <thead>
             <tr>
-              <th>Product</th>
-              <th>User</th>
+              <th>Name</th>
               <th>Action</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>Fanta</th>
-              <td>Sushant Chapagain</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Coke</th>
-              <td>Sushant Chapagain</td>
+              <th>Soft drink</th>
               <td>Edit</td>
               <td>Delete</td>
             </tr>
             <tr>
               <th>Pizza</th>
-              <td>lexus</td>
               <td>Edit</td>
               <td>Delete</td>
             </tr>
             <tr>
-              <th>Pasta</th>
-              <td>lexus</td>
+              <th>Hard drink</th>
+              <td>Edit</td>
+              <td>Delete</td>
+            </tr>
+            <tr>
+              <th>Hard drink</th>
+              <td>Edit</td>
+              <td>Delete</td>
+            </tr>
+            <tr>
+              <th>Hard drink</th>
+              <td>Edit</td>
+              <td>Delete</td>
+            </tr>
+            <tr>
+              <th>Noodles</th>
               <td>Edit</td>
               <td>Delete</td>
             </tr>
@@ -48,4 +53,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Category;

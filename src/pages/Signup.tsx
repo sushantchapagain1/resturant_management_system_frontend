@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 
@@ -9,7 +10,7 @@ const Signup = () => {
         <form action="" method="Post">
           <div className="input__wrapper">
             <p className="form_text">
-              Already Have an account?<a href="#">Log in</a>
+              Already Have an account?<NavLink to="/login">Log in</NavLink>
             </p>
             <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />

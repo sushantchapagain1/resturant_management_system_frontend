@@ -3,10 +3,9 @@ import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import React, { useState } from "react";
 import { login } from "../services/loginService";
-import { useMutation, UseQueryResult, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-
-export const url = "http://localhost:3000/api/users";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,19 +18,19 @@ const Login = () => {
     isError,
     data,
   } = useMutation(login);
+
   const handleLogin = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
     afterLogin(
-      { email, password },
-      {
-        onSuccess: () => navigate("/products"),
-        onError: (error: any) => console.log(error.response?.data.message),
-      }
+      { email, password }
+      // {
+      // onSuccess: () => navigate("/products"),
+      // onError: (error: any) => console.log(error.response?.data.message),
+      // }
     );
   };
-
   return (
     <div>
       <Navbar />
@@ -39,7 +38,7 @@ const Login = () => {
         <form action="" method="Post">
           <div className="input__wrapper">
             <p className="form_text">
-              Dont Have an account?<a href="#">Sign Up</a>
+              Dont Have an account?<NavLink to="/signup">Sign Up</NavLink>
             </p>
             <input
               type="email"
