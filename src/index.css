@@ -32,3 +32,7 @@ a {
   text-decoration: none;
   color: black;
 }
+.action-btn {
+  cursor: pointer;
+  margin-top: 2rem;
+}

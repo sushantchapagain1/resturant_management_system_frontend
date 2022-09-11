@@ -7,6 +7,6 @@ type loginData = {
 
 export const login = async (data: loginData) => {
   const response = await backendApi.post("users/login", data);
-  console.log(response);
+  console.log(response.data);
   return response;
 };

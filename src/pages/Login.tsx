@@ -6,6 +6,8 @@ import { login } from "../services/loginService";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,12 +25,23 @@ const Login = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+
     afterLogin(
-      { email, password }
-      // {
-      // onSuccess: () => navigate("/products"),
-      // onError: (error: any) => console.log(error.response?.data.message),
-      // }
+      { email, password },
+      {
+        // onSuccess: () => navigate("/products"),
+        onError: (error: any) => {
+          toast.error("🦄 Wow so easy!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          console.log(error.response?.data.message);
+        },
+      }
     );
   };
   return (
@@ -54,6 +67,7 @@ const Login = () => {
               Log in
             </button>
           </div>
+          <ToastContainer />
         </form>
       </div>
       <Footer />
