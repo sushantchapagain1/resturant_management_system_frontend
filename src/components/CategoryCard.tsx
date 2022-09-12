@@ -22,7 +22,8 @@ const CategoryCard: React.FC<CategoryCardProps> = (props) => {
       },
       onSuccess: () => {
         toast.success("Category Deleted Successfully");
-        // cache.invalidateQueries("[get-category]");
+        // cache.invalidateQueries(["get-category"]);
+        location.reload();
       },
     });
   };

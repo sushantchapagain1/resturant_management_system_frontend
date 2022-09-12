@@ -14,27 +14,31 @@ const Category = () => {
     if (isSuccess) {
       setCategories(data?.data.data.categories);
     }
-  }, []);
+  }, [categories]);
 
   return (
     <div>
       <Navbar />
       <div className="container table__wrapper">
-        <Link to="/addcategory">Add Category</Link>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Action</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {categories.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </tbody>
-        </table>
+        <div className="category_wrapper">
+          <Link to="/addcategory" className="add_category_btn">
+            Add Category
+          </Link>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Action</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories.map((category) => (
+                <CategoryCard key={category.id} category={category} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       <Footer />
     </div>

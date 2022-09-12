@@ -10,3 +10,9 @@ export const login = async (data: loginData) => {
   console.log(response.data);
   return response;
 };
+
+export const logout = async () => {
+  const response = await backendApi.get("users/logout");
+  console.log(response);
+  return response;
+};

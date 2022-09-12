@@ -2,6 +2,7 @@ import { backendApi } from "../utils/api";
 
 type categoryData = {
   name: string;
+  id?: string;
 };
 
 export const getCategory = async () => {
@@ -11,6 +12,12 @@ export const getCategory = async () => {
 
 export const addCategory = async (data: categoryData) => {
   const response = await backendApi.post("/category", data);
+  console.log(response);
+  return response;
+};
+
+export const updateCategory = async (data: categoryData) => {
+  const response = await backendApi.patch(`/category/${data.id}`, data);
   console.log(response);
   return response;
 };

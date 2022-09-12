@@ -36,3 +36,8 @@ a {
   cursor: pointer;
   margin-top: 2rem;
 }
+
+.add_category_btn {
+  color: blueviolet;
+  margin-bottom: 2rem;
+}
