@@ -1,0 +1,28 @@
+.form__container {
+  gap: 2rem;
+  width: 40%;
+  margin-bottom: 5rem;
+}
+.input__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.input__wrapper input {
+  padding: 1.2rem;
+  outline: none;
+}
+
+.input__wrapper button {
+  padding: 0.8rem;
+  outline: none;
+  width: 20%;
+  align-self: center;
+  cursor: pointer;
+}
+
+.form_text {
+  font-size: 1.8rem;
+  color: #454545;
+}
