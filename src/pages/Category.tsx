@@ -9,12 +9,10 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
   const [categories, setCategories] = useState<any[]>([]);
-  const { isSuccess, data, isError } = useQuery(["get-category"], getCategory);
+  const { isSuccess, data } = useQuery(["get-category"], getCategory);
   useEffect(() => {
     if (isSuccess) {
       setCategories(data?.data.data.categories);
-    } else if (isError) {
-      <td>Error Loading data </td>;
     }
   }, []);
 

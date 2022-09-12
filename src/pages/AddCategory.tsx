@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import { addCategory } from "../services/categoryService";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddCategory = () => {
   const [name, setcategoryName] = useState("");
@@ -22,7 +21,12 @@ const AddCategory = () => {
       { name },
       {
         onError: (err: any) => {
-          toast(err.response.data.message);
+          toast.error(err.response?.data.message);
+          console.error(err.response.data.message);
+        },
+        onSuccess: () => {
+          setcategoryName("");
+          toast.success("category created sucessfully");
         },
       }
     );
@@ -33,18 +37,21 @@ const AddCategory = () => {
       <div className="form__container container">
         <form>
           <div className="input__wrapper">
+            <h2>Add a Category</h2>
             <input
               type="text"
               name="name"
               placeholder="category name"
               value={name}
+              id="category_input"
               onChange={(e) => setcategoryName(e.target.value)}
+              required
             />
             <button type="submit" onClick={handleCategorySubmit}>
               Submit
             </button>
+            <Toaster />
           </div>
-          <ToastContainer />
         </form>
       </div>
       <Footer />

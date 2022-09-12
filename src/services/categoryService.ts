@@ -14,3 +14,8 @@ export const addCategory = async (data: categoryData) => {
   console.log(response);
   return response;
 };
+
+export const deleteCategory = async (id: string) => {
+  const response = await backendApi.delete(`/category/${id}`);
+  return response;
+};

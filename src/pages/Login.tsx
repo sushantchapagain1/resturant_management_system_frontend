@@ -6,8 +6,8 @@ import { login } from "../services/loginService";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,16 +29,13 @@ const Login = () => {
     afterLogin(
       { email, password },
       {
-        // onSuccess: () => navigate("/products"),
+        onSuccess: () => {
+          toast.success("Login Successfull");
+
+          navigate("/products");
+        },
         onError: (error: any) => {
-          toast.error("🦄 Wow so easy!", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
+          toast.error(error.response?.data.message);
           console.log(error.response?.data.message);
         },
       }
@@ -60,14 +57,14 @@ const Login = () => {
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit" onClick={handleLogin}>
               Log in
             </button>
+            <Toaster />
           </div>
-          <ToastContainer />
         </form>
       </div>
       <Footer />
