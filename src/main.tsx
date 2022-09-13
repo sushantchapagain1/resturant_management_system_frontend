@@ -27,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="products" element={<Products />} />
           <Route path="users" element={<User />} />
           <Route path="addCategory" element={<AddCategory />} />
+          <Route path="updateCategory/:id" element={<AddCategory />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

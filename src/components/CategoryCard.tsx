@@ -10,7 +10,11 @@ type CategoryCardProps = {
 
 const CategoryCard: React.FC<CategoryCardProps> = (props) => {
   const cache = useQueryClient();
-  const { mutateAsync: delHandler } = useMutation(deleteCategory);
+  const {
+    mutateAsync: delHandler,
+    isLoading,
+    isError,
+  } = useMutation(deleteCategory);
   const handleDelete = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -22,16 +26,16 @@ const CategoryCard: React.FC<CategoryCardProps> = (props) => {
       },
       onSuccess: () => {
         toast.success("Category Deleted Successfully");
-        // cache.invalidateQueries(["get-category"]);
-        location.reload();
+        cache.invalidateQueries(["get-category"]);
       },
     });
   };
+
   return (
     <tr>
       <th>{props.category.name}</th>
       <td className="action-btn">
-        <Link to={`/category/${props.category.id}`}>Edit</Link>
+        <Link to={`/updateCategory/${props.category.id}`}>Edit</Link>
       </td>
 
       <td className="action-btn">

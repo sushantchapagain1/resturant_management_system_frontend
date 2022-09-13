@@ -4,17 +4,14 @@ import "../css/tables.css";
 import { useQuery } from "@tanstack/react-query";
 import { getCategory } from "../services/categoryService";
 import CategoryCard from "../components/CategoryCard";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Category = () => {
-  const [categories, setCategories] = useState<any[]>([]);
-  const { isSuccess, data } = useQuery(["get-category"], getCategory);
-  useEffect(() => {
-    if (isSuccess) {
-      setCategories(data?.data.data.categories);
-    }
-  }, [categories]);
+  const { isSuccess, data, isError, error, isLoading } = useQuery(
+    ["get-category"],
+    getCategory
+  );
+  console.log(data);
 
   return (
     <div>
@@ -33,7 +30,7 @@ const Category = () => {
               </tr>
             </thead>
             <tbody>
-              {categories.map((category) => (
+              {data?.data.data.categories.map((category: any) => (
                 <CategoryCard key={category.id} category={category} />
               ))}
             </tbody>
