@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { deleteCategory } from "../services/categoryService";
 
 type CategoryCardProps = {
@@ -40,7 +40,6 @@ const CategoryCard: React.FC<CategoryCardProps> = (props) => {
 
       <td className="action-btn">
         <button onClick={handleDelete}>Delete</button>
-        <Toaster />
       </td>
     </tr>
   );

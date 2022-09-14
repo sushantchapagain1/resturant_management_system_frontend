@@ -10,8 +10,8 @@ export const getCategory = async () => {
   return response;
 };
 
-export const getCategoryByID = async () => {
-  const response = await backendApi.get("/category/:id");
+export const getCategoryByID = async (id: string) => {
+  const response = await backendApi.get(`/category/${id}`);
   return response;
 };
 

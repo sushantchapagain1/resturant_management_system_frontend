@@ -4,7 +4,7 @@ import { Navbar } from "../components/Navbar";
 import { signup } from "../services/loginService";
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -59,7 +59,6 @@ const Signup = () => {
             <button type="submit" onClick={handleSignUp}>
               Sign Up
             </button>
-            <Toaster />
           </div>
         </form>
       </div>

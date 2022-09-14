@@ -7,7 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -63,7 +63,6 @@ const Login = () => {
             <button type="submit" onClick={handleLogin}>
               Log in
             </button>
-            <Toaster />
           </div>
         </form>
       </div>
