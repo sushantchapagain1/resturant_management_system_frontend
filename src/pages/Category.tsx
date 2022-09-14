@@ -12,7 +12,7 @@ const Category = () => {
       <Navbar />
       <div className="container table__wrapper">
         <div className="category_wrapper">
-          <Link to="/addcategory" className="add_category_btn">
+          <Link to="/addcategory" className="add_btn">
             Add Category
           </Link>
           <table>

@@ -56,8 +56,8 @@ const CategoryForm = (props: CategoryFormProps) => {
             name="name"
             defaultValue={props.data?.name}
             placeholder="category name"
-            required
           />
+
           <button type="submit">
             {props.mode === "edit" ? "Edit" : "Submit"}
           </button>

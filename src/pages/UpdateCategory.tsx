@@ -1,7 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import { addCategory, getCategoryByID } from "../services/categoryService";
+import { getCategoryByID } from "../services/categoryService";
 import CategoryForm from "../components/CategoryForm";
 import { useParams } from "react-router-dom";
 

@@ -13,6 +13,7 @@ import Category from "./pages/Category";
 import User from "./pages/User";
 import AddCategory from "./pages/AddCategory";
 import UpdateCategory from "./pages/UpdateCategory";
+import AddProduct from "./pages/AddProduct";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="users" element={<User />} />
           <Route path="addCategory" element={<AddCategory />} />
           <Route path="updateCategory/:id" element={<UpdateCategory />} />
+          <Route path="addProduct" element={<AddProduct />} />
         </Routes>
         <Toaster />
       </QueryClientProvider>
