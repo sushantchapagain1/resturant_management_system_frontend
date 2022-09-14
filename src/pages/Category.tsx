@@ -1,18 +1,12 @@
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import "../css/tables.css";
-import { useQuery } from "@tanstack/react-query";
-import { getCategory } from "../services/categoryService";
+import { useCategory } from "../hooks/categoryHook";
 import CategoryCard from "../components/CategoryCard";
 import { Link } from "react-router-dom";
 
 const Category = () => {
-  const { isSuccess, data, isError, error, isLoading } = useQuery(
-    ["get-category"],
-    getCategory
-  );
-  console.log(data);
-
+  const category = useCategory();
   return (
     <div>
       <Navbar />
@@ -30,7 +24,7 @@ const Category = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.data.data.categories.map((category: any) => (
+              {category.data?.data.data.categories.map((category: any) => (
                 <CategoryCard key={category.id} category={category} />
               ))}
             </tbody>

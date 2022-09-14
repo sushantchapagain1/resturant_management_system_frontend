@@ -3,11 +3,11 @@ import React from "react";
 type ProductCardProps = {
   product: { name: string; price: number };
 };
-const ProductCard: React.FC<ProductCardProps> = (props) => {
+const ProductCard: React.FC<ProductCardProps> = (productProps) => {
   return (
     <tr>
-      <th>{props.product.name}</th>
-      <td>{props.product.price}</td>
+      <th>{productProps.product.name}</th>
+      <td>{productProps.product.price}</td>
       <td>Soft Drinks</td>
       <td>Edit</td>
       <td>Delete</td>

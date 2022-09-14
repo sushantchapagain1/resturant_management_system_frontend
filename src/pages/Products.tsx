@@ -1,26 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import "../css/tables.css";
-
-const url = "http://localhost:3000/api";
+import { getProduct } from "../services/productService";
+import { useCategory } from "../hooks/categoryHook";
 
 const Products = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  const { isLoading, data } = useQuery(["get-products"], getProduct);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get(`${url}/products`);
-        setProducts(res.data.data.products);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchProducts();
-  }, []);
   return (
     <div>
       <Navbar />
@@ -36,7 +24,7 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {data?.data.data.products.map((product: any) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </tbody>
