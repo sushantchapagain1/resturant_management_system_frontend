@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useCategory } from "../hooks/categoryHook";
 import { addProduct, updateProduct } from "../services/productService";
 
 type ProductFormProps = {
@@ -8,6 +9,7 @@ type ProductFormProps = {
 };
 
 const ProductForm = (props: ProductFormProps) => {
+  const category = useCategory();
   const cache = useQueryClient();
   const { mutate: add } = useMutation(addProduct);
   const { mutate: update } = useMutation(updateProduct);
@@ -77,10 +79,14 @@ const ProductForm = (props: ProductFormProps) => {
           />
 
           <select name="categoryId">
-            <option disabled>Select a category</option>
-            <option defaultValue={props.data?.categoryId}>
-              a471effa-d50e-4936-a799-10e67a9fc41c
+            <option value="" disabled>
+              Select Category
             </option>
+            {category.data?.data.data.categories.map((category: any) => (
+              <option key={category.id} value={`${category.id}`}>
+                {category.name}
+              </option>
+            ))}
           </select>
 
           <button type="submit">

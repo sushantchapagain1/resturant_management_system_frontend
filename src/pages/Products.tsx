@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
   const { isLoading, data } = useQuery(["get-products"], getProduct);
-
   return (
     <div>
       <Navbar />

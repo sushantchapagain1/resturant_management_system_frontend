@@ -9,7 +9,6 @@ const UpdateProduct = () => {
   const params = useParams();
   const { data } = useQuery(["product", params.id], async () => {
     const response = await getProductByID(params?.id ?? "");
-    console.log(response.data.data);
     return response.data.data?.product;
   });
 
