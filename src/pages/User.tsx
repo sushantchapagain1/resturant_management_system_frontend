@@ -1,74 +1,55 @@
+import { useQuery } from "@tanstack/react-query";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import "../css/tables.css";
+import { getUsers } from "../services/loginService";
+
+type userData = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+};
+
 const User = () => {
+  const { data, isLoading, isError } = useQuery(["get-users"], getUsers, {
+    retry: false,
+  });
+
   return (
     <div>
       <Navbar />
       <div className="container table__wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>lexus restro Admin</th>
-              <td>lexusadminpro@restro.io</td>
-              <td>Admin</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Sushant Chapagain</th>
-              <td>sushant@test.io</td>
-              <td>Manager</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Sushant Chapagain</th>
-              <td>sushant@test.io</td>
-              <td>Manager</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Sushant Chapagain</th>
-              <td>sushant@test.io</td>
-              <td>Manager</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Sushant Chapagain</th>
-              <td>sushant@test.io</td>
-              <td>Manager</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>lexus restro Admin</th>
-              <td>lexusadminpro@restro.io</td>
-              <td>Admin</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>test</th>
-              <td>test@restro.io</td>
-              <td>Customer</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-          </tbody>
-        </table>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : isError ? (
+          <h1>403 forbidden </h1>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.data.data.users.map((user: userData) => (
+                <tr key={user.id}>
+                  <th>{user.name}</th>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                  <td>Edit</td>
+                  <td>Delete</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
+
       <Footer />
     </div>
   );

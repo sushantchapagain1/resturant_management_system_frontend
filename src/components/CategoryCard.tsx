@@ -10,11 +10,7 @@ type CategoryCardProps = {
 
 const CategoryCard: React.FC<CategoryCardProps> = (props) => {
   const cache = useQueryClient();
-  const {
-    mutateAsync: delHandler,
-    isLoading,
-    isError,
-  } = useMutation(deleteCategory);
+  const { mutateAsync: delHandler, isLoading } = useMutation(deleteCategory);
   const handleDelete = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {

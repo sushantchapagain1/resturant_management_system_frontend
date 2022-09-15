@@ -23,6 +23,12 @@ export const signup = async (data: signUpData) => {
   return response;
 };
 
+export const getUsers = async () => {
+  const response = await backendApi.get("users");
+  console.log(response);
+  return response;
+};
+
 export const logout = async () => {
   const response = await backendApi.get("users/logout");
   console.log(response);

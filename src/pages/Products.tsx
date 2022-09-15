@@ -12,27 +12,31 @@ const Products = () => {
     <div>
       <Navbar />
       <div className="container table__wrapper">
-        <div className="product_wrapper">
-          <Link to="/addProduct" className="add_btn">
-            Add Product
-          </Link>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Action</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.data.data.products.map((product: any) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <div className="product_wrapper">
+            <Link to="/addProduct" className="add_btn">
+              Add Product
+            </Link>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Action</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.data.data.products.map((product: any) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
       <Footer />
     </div>
