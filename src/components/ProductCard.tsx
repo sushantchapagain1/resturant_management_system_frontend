@@ -1,6 +1,7 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { deleteProduct } from "../services/productService";
 
 type ProductCardProps = {
@@ -29,7 +30,9 @@ const ProductCard: React.FC<ProductCardProps> = (productProps) => {
       <th>{productProps.product.name}</th>
       <td>{productProps.product.price}</td>
       <td>Soft Drinks</td>
-      <td>Edit</td>
+      <td className="action-btn">
+        <Link to={`/updateProduct/${productProps.product.id}`}>Edit</Link>
+      </td>
       <td className="action-btn">
         <button onClick={handleProductDelete}>Delete</button>
       </td>

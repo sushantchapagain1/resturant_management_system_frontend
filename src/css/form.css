@@ -9,7 +9,8 @@
   gap: 1.8rem;
 }
 
-.input__wrapper input {
+.input__wrapper input,
+.input__wrapper select {
   padding: 1.2rem;
   outline: none;
 }

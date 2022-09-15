@@ -2,7 +2,7 @@ import { backendApi } from "../utils/api";
 
 type productData = {
   name: string;
-  price: string;
+  price: number;
   categoryId: string;
   id?: string;
 };
@@ -12,10 +12,10 @@ export const getProduct = async () => {
   return response;
 };
 
-// export const getProductByID = async () => {
-//   const response = await backendApi.get("/products/:id");
-//   return response;
-// };
+export const getProductByID = async (id: string) => {
+  const response = await backendApi.get(`/products/${id}`);
+  return response;
+};
 
 export const addProduct = async (data: productData) => {
   const response = await backendApi.post("/products", data);

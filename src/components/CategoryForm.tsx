@@ -8,7 +8,6 @@ type CategoryFormProps = {
 };
 const CategoryForm = (props: CategoryFormProps) => {
   const cache = useQueryClient();
-
   const { mutate: add } = useMutation(addCategory);
   const { mutate: update } = useMutation(updateCategory);
   const handleCategorySubmit = (e: any) => {

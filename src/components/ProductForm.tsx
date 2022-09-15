@@ -4,7 +4,7 @@ import { addProduct, updateProduct } from "../services/productService";
 
 type ProductFormProps = {
   mode: "edit" | "create";
-  data?: { name: string; price: number; categoryId: string; id: string };
+  data?: { name: string; price?: number; categoryId: string; id: string };
 };
 
 const ProductForm = (props: ProductFormProps) => {
@@ -15,10 +15,11 @@ const ProductForm = (props: ProductFormProps) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData) as {
+      price: any;
       name: string;
-      price: number;
       categoryId: string;
     };
+    const dataPrice = Number(data.price);
     const postSubmitProps = {
       onError: (err: any) => {
         toast.error(err.response?.data.message);
@@ -37,6 +38,8 @@ const ProductForm = (props: ProductFormProps) => {
         {
           id: props.data?.id,
           name: data.name,
+          price: dataPrice,
+          categoryId: data.categoryId,
         },
         postSubmitProps
       );
@@ -44,6 +47,8 @@ const ProductForm = (props: ProductFormProps) => {
       add(
         {
           name: data.name,
+          price: dataPrice,
+          categoryId: data.categoryId,
         },
         postSubmitProps
       );
@@ -64,18 +69,19 @@ const ProductForm = (props: ProductFormProps) => {
           />
 
           <input
-            type="text"
+            type="number"
             name="price"
             defaultValue={props.data?.price}
             placeholder="Product price"
+            min={1}
           />
 
-          <input
-            type="text"
-            name="categoryId"
-            defaultValue={props.data?.categoryId}
-            placeholder="Category name"
-          />
+          <select name="categoryId">
+            <option disabled>Select a category</option>
+            <option defaultValue={props.data?.categoryId}>
+              a471effa-d50e-4936-a799-10e67a9fc41c
+            </option>
+          </select>
 
           <button type="submit">
             {props.mode === "edit" ? "Edit" : "Submit"}
