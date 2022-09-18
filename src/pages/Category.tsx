@@ -19,20 +19,24 @@ const Category = () => {
             <Link to="/addcategory" className="add_btn">
               Add Category
             </Link>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Action</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {category.data?.data.data.categories.map((category: any) => (
-                  <CategoryCard key={category.id} category={category} />
-                ))}
-              </tbody>
-            </table>
+            {category.data?.data.data.categories.length === 0 ? (
+              <h1>There Are No Categories Currently</h1>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {category.data?.data.data.categories.map((category: any) => (
+                    <CategoryCard key={category.id} category={category} />
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         )}
       </div>

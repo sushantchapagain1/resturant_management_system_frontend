@@ -19,22 +19,26 @@ const Products = () => {
             <Link to="/addProduct" className="add_btn">
               Add Product
             </Link>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Action</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.data.data.products.map((product: any) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </tbody>
-            </table>
+            {data?.data.data.products.length === 0 ? (
+              <h1>There Are No products Currently</h1>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.data.data.products.map((product: any) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         )}
       </div>

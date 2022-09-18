@@ -2,7 +2,7 @@ import "../css/form.css";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import React, { useState } from "react";
-import { login } from "../services/loginService";
+import { login } from "../services/userService";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";

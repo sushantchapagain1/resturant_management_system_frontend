@@ -10,7 +10,7 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = (productProps) => {
   const cache = useQueryClient();
-  const { mutate: delHandler, isLoading, isError } = useMutation(deleteProduct);
+  const { mutate: delHandler } = useMutation(deleteProduct);
   const handleProductDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {

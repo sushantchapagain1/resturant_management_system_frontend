@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import Footer from "../components/Footer";
-import { Navbar } from "../components/Navbar";
-import { signup } from "../services/loginService";
+import Footer from "./Footer";
+import { Navbar } from "./Navbar";
+import { signup } from "../services/userService";
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";

@@ -1,7 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import "../css/tables.css";
+import { getProduct } from "../services/productService";
 const Orders = () => {
+  const { isLoading, data } = useQuery(["get-orders"], getProduct);
+  console.log(data?.data.data.products);
   return (
     <div>
       <Navbar />
@@ -16,30 +20,14 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>Fanta</th>
-              <td>Sushant Chapagain</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Coke</th>
-              <td>Sushant Chapagain</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Pizza</th>
-              <td>lexus</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
-            <tr>
-              <th>Pasta</th>
-              <td>lexus</td>
-              <td>Edit</td>
-              <td>Delete</td>
-            </tr>
+            {data?.data.data.products.map((order: any) => (
+              <tr key={order.id}>
+                <th>Pizza</th>
+                <td>Sushant Chapagain</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

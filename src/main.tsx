@@ -6,7 +6,7 @@ import "./index.css";
 import { Toaster } from "react-hot-toast";
 
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Signup from "./components/Signup";
 import Orders from "./pages/Orders";
 import Products from "./pages/Products";
 import Category from "./pages/Category";
@@ -15,6 +15,7 @@ import AddCategory from "./pages/AddCategory";
 import UpdateCategory from "./pages/UpdateCategory";
 import AddProduct from "./pages/AddProduct";
 import UpdateProduct from "./pages/UpdateProduct";
+import UpdateUser from "./pages/UpdateUser";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="updateCategory/:id" element={<UpdateCategory />} />
           <Route path="addProduct" element={<AddProduct />} />
           <Route path="updateProduct/:id" element={<UpdateProduct />} />
+          <Route path="updateUser/:id" element={<UpdateUser />} />
         </Routes>
         <Toaster />
       </QueryClientProvider>

@@ -1,21 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
+import UserCard from "../components/UserCard";
 import "../css/tables.css";
-import { getUsers } from "../services/loginService";
-
-type userData = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-};
+import { useUsers } from "../hooks/userHooks";
 
 const User = () => {
-  const { data, isLoading, isError } = useQuery(["get-users"], getUsers, {
-    retry: false,
-  });
-
+  const users = useUsers();
+  const { isError, isLoading } = useUsers();
   return (
     <div>
       <Navbar />
@@ -36,14 +27,8 @@ const User = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.data.data.users.map((user: userData) => (
-                <tr key={user.id}>
-                  <th>{user.name}</th>
-                  <td>{user.email}</td>
-                  <td>{user.role}</td>
-                  <td>Edit</td>
-                  <td>Delete</td>
-                </tr>
+              {users.data?.data.data.users.map((user: any) => (
+                <UserCard key={user.id} user={user} />
               ))}
             </tbody>
           </table>
