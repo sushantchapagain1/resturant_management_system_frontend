@@ -1,15 +1,15 @@
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import CategoryForm from "../components/CategoryForm";
+import ProductForm from "../components/ProductForm";
 
-const AddCategory = () => {
+const AddProduct = () => {
   return (
     <div>
       <Navbar />
-      <CategoryForm mode="create" />
+      <ProductForm mode="create" />
       <Footer />
     </div>
   );
 };
 
-export default AddCategory;
+export default AddProduct;

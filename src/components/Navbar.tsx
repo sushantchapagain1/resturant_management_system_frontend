@@ -3,7 +3,7 @@ export const Navbar: React.FC = () => {
   return (
     <div className="container">
       <header>
-        <h1> Rms</h1>
+        <h1> RMS</h1>
         <nav className="nav">
           <ul className="nav_lists">
             <NavLink to="/products">products</NavLink>

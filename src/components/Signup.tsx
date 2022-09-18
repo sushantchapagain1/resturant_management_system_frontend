@@ -1,46 +1,37 @@
-import "../css/form.css";
-import Footer from "../components/Footer";
-import { Navbar } from "../components/Navbar";
-import React, { useState } from "react";
-import { login } from "../services/userService";
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import Footer from "./Footer";
+import { Navbar } from "./Navbar";
+import { signup } from "../services/userService";
+import React, { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
-import toast from "react-hot-toast";
-
-const Login = () => {
+const Signup = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
   const {
-    mutateAsync: afterLogin,
+    mutateAsync: signUpmutateHandler,
     isLoading,
-    error,
-    isError,
     data,
-  } = useMutation(login);
+  } = useMutation(signup);
 
-  const handleLogin = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleSignUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-
-    afterLogin(
-      { email, password },
+    signUpmutateHandler(
+      { name, email, password },
       {
         onSuccess: () => {
-          toast.success("Login Successfull");
-
-          navigate("/products");
+          toast.success("User Created Succesfully");
         },
-        onError: (error: any) => {
-          toast.error(error.response?.data.message);
-          console.log(error.response?.data.message);
+        onError: (err: any) => {
+          toast.error(err.response?.data.message);
         },
       }
     );
   };
+
   return (
     <div>
       <Navbar />
@@ -48,8 +39,13 @@ const Login = () => {
         <form action="" method="Post">
           <div className="input__wrapper">
             <p className="form_text">
-              Dont Have an account?<NavLink to="/signup">Sign Up</NavLink>
+              Already Have an account?<NavLink to="/login">Log in</NavLink>
             </p>
+            <input
+              type="text"
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+            />
             <input
               type="email"
               placeholder="Email"
@@ -60,8 +56,8 @@ const Login = () => {
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit" onClick={handleLogin}>
-              Log in
+            <button type="submit" onClick={handleSignUp}>
+              Sign Up
             </button>
           </div>
         </form>
@@ -71,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

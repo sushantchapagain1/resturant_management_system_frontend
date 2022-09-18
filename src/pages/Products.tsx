@@ -1,48 +1,47 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import "../css/tables.css";
-
-const url = "http://localhost:3000/api";
+import { getProduct } from "../services/productService";
+import { Link } from "react-router-dom";
 
 const Products = () => {
-  const [products, setProducts] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get(`${url}/products`);
-        setProducts(res.data.data.products);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchProducts();
-  }, []);
+  const { isLoading, data } = useQuery(["get-products"], getProduct);
   return (
     <div>
       <Navbar />
       <div className="container table__wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Action</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </tbody>
-        </table>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <div className="product_wrapper">
+            <Link to="/addProduct" className="add_btn">
+              Add Product
+            </Link>
+            {data?.data.data.products.length === 0 ? (
+              <h1>There Are No products Currently</h1>
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.data.data.products.map((product: any) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        )}
       </div>
-
       <Footer />
     </div>
   );

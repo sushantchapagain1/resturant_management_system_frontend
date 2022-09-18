@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { deleteCategory } from "../services/categoryService";
 
 type CategoryCardProps = {
@@ -10,7 +10,7 @@ type CategoryCardProps = {
 
 const CategoryCard: React.FC<CategoryCardProps> = (props) => {
   const cache = useQueryClient();
-  const { mutateAsync: delHandler } = useMutation(deleteCategory);
+  const { mutateAsync: delHandler, isLoading } = useMutation(deleteCategory);
   const handleDelete = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -22,21 +22,20 @@ const CategoryCard: React.FC<CategoryCardProps> = (props) => {
       },
       onSuccess: () => {
         toast.success("Category Deleted Successfully");
-        // cache.invalidateQueries(["get-category"]);
-        location.reload();
+        cache.invalidateQueries(["get-category"]);
       },
     });
   };
+
   return (
     <tr>
       <th>{props.category.name}</th>
       <td className="action-btn">
-        <Link to={`/category/${props.category.id}`}>Edit</Link>
+        <Link to={`/updateCategory/${props.category.id}`}>Edit</Link>
       </td>
 
       <td className="action-btn">
         <button onClick={handleDelete}>Delete</button>
-        <Toaster />
       </td>
     </tr>
   );
